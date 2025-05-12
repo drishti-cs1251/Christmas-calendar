@@ -66,4 +66,40 @@ sock:`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0000
         }
 
         calendarGrid.appendChild(div);
+        function startCountdown() {
+            const targetDate = new Date(new Date().getFullYear(), 11, 25, 0, 0, 0);
+        
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+        
+            function updateCountdown() {
+                const now = new Date();
+                const diff = targetDate - now;
+        
+                if (diff <= 0) {
+                    document.getElementById('countdown').innerHTML = "<strong>Merry Christmas! 🎄</strong>";
+                    clearInterval(interval);
+                    return;
+                }
+        
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / (1000 * 60)) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+        
+                daysEl.textContent = days;
+                hoursEl.textContent = hours;
+                minutesEl.textContent = minutes;
+                secondsEl.textContent = seconds;
+            }
+        
+            updateCountdown();
+            const interval = setInterval(updateCountdown, 1000);
+        }
+        
+        startCountdown();
+        
+        
     }
