@@ -49,57 +49,108 @@ snowflake:`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="
 sock:`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M192,16H104A16,16,0,0,0,88,32v76.69L49.25,147.43a58.92,58.92,0,0,0,83.32,83.32L201,162.34a23.85,23.85,0,0,0,7-17V32A16,16,0,0,0,192,16Zm0,16h0V48H104V32ZM121.25,219.43a42.91,42.91,0,1,1-60.68-60.68l41.09-41.09A8,8,0,0,0,104,112V64h88v40.58A56.09,56.09,0,0,0,144,160a55.4,55.4,0,0,0,7.93,28.76ZM189.66,151l-25.91,25.91A39.6,39.6,0,0,1,160,160a40.05,40.05,0,0,1,32-39.19v24.56A8,8,0,0,1,189.66,151Z"></path></svg>`,
 };
 
-    const calendarGrid = document.getElementById('calendar');
+const calendarGrid = document.getElementById('calendar');
 
-    for (let day = 1; day <= 24; day++) {
-        const div = document.createElement('div');
-        div.classList.add('calendar-icon');
-
-        const itemName = drawItemFunctions[day];
-        if (itemName && iconSVGs[itemName]) {
-            div.innerHTML = iconSVGs[itemName];
-        } else {
-            const span = document.createElement('span');
-            span.classList.add('number');
-            span.textContent = day;
-            div.appendChild(span);
-        }
-
-        calendarGrid.appendChild(div);
-        function startCountdown() {
-            const targetDate = new Date(new Date().getFullYear(), 11, 25, 0, 0, 0);
-        
-            const daysEl = document.getElementById('days');
-            const hoursEl = document.getElementById('hours');
-            const minutesEl = document.getElementById('minutes');
-            const secondsEl = document.getElementById('seconds');
-        
-            function updateCountdown() {
-                const now = new Date();
-                const diff = targetDate - now;
-        
-                if (diff <= 0) {
-                    document.getElementById('countdown').innerHTML = "<strong>Merry Christmas! 🎄</strong>";
-                    clearInterval(interval);
-                    return;
-                }
-        
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                const minutes = Math.floor((diff / (1000 * 60)) % 60);
-                const seconds = Math.floor((diff / 1000) % 60);
-        
-                daysEl.textContent = days;
-                hoursEl.textContent = hours;
-                minutesEl.textContent = minutes;
-                secondsEl.textContent = seconds;
-            }
-        
-            updateCountdown();
-            const interval = setInterval(updateCountdown, 1000);
-        }
-        
-        startCountdown();
-        
-        
+// Quote list
+const quotes = [
+  "“Christmas will always be as long as we stand heart to heart and hand in hand.” – Dr. Seuss",
+  "“Courage is grace under pressure.” – Ernest Hemingway",
+  "“Christmas is not as much about opening our presents as opening our hearts.” – Janice Maeditere",
+  "“It takes courage to grow up and become who you really are.” – E.E. Cummings",
+  "“Dignity is not negotiable. Dignity is the honor of the family.” – Vartan Gregorian",
+  "“Blessed is the season which engages the whole world in a conspiracy of love.” – Hamilton Wright Mabie",
+  "“Courage doesn’t always roar. Sometimes courage is the quiet voice at the end of the day saying, ‘I will try again tomorrow.’” – Mary Anne Radmacher",
+  "“Christmas is a season for kindling the fire for hospitality in the hall, the genial flame of charity in the heart.” – Washington Irving",
+  "“The only thing we have to fear is fear itself.” – Franklin D. Roosevelt",
+  "“Peace on earth will come to stay, when we live Christmas every day.” – Helen Steiner Rice",
+  "“Real courage is doing the right thing when nobody’s looking.” – J.C. Watts",
+  "“A man is not finished when he is defeated. He is finished when he quits.” – Richard Nixon",
+  "“The best way to spread Christmas cheer is singing loud for all to hear.” – Buddy the Elf",
+  "“Courage is found in unlikely places.” – J.R.R. Tolkien",
+  "“Christmas is doing a little something extra for someone.” – Charles M. Schulz",
+  "“Dignity is the ability to stand strong while being kind.” – Unknown",
+  "“Christmas isn’t a season. It’s a feeling.” – Edna Ferber",
+  "“It takes courage to stand alone, even when you believe you’re right.” – Socrates",
+  "“At Christmas, all roads lead home.” – Marjorie Holmes",
+  "“Have the courage to follow your heart and intuition.” – Steve Jobs",
+  "“There is no dignity quite so impressive, and no independence quite so important, as living within your means.” – Calvin Coolidge",
+  "“Christmas waves a magic wand over this world, and behold, everything is softer and more beautiful.” – Norman Vincent Peale",
+  "“It takes courage to be kind in a world that often rewards cruelty.” – Unknown",
+  "“Christmas is the spirit of giving without a thought of getting.” – Thomas S. Monson"
+];
+// Generate calendar
+for (let day = 1; day <= 24; day++) {
+    const div = document.createElement('div');
+    div.classList.add('calendar-icon');
+  
+    const itemName = drawItemFunctions[day];
+    if (itemName && iconSVGs[itemName]) {
+      div.innerHTML = iconSVGs[itemName];
+    } else {
+      const span = document.createElement('span');
+      span.classList.add('number');
+      span.textContent = day;
+      div.appendChild(span);
     }
+  
+    // Click handler to show random quote
+    div.addEventListener('click', () => {
+      // Remove any existing quote box
+      const existingQuote = div.querySelector('.quote-box');
+      if (existingQuote) {
+        existingQuote.remove();
+      }
+  
+      const quoteDiv = document.createElement('div');
+      quoteDiv.className = 'quote-box';
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      quoteDiv.textContent = quotes[randomIndex];
+  
+      div.appendChild(quoteDiv);
+  
+      // Trigger display
+      setTimeout(() => quoteDiv.classList.add('show'), 10);
+    });
+  
+    calendarGrid.appendChild(div);
+  }
+  
+
+
+// Countdown logic
+function startCountdown() {
+  const targetDate = new Date(new Date().getFullYear(), 11, 25, 0, 0, 0);
+
+  const daysEl = document.getElementById('days');
+  const hoursEl = document.getElementById('hours');
+  const minutesEl = document.getElementById('minutes');
+  const secondsEl = document.getElementById('seconds');
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML = "<strong>Merry Christmas! 🎄</strong>";
+      clearInterval(interval);
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    daysEl.textContent = days;
+    hoursEl.textContent = hours;
+    minutesEl.textContent = minutes;
+    secondsEl.textContent = seconds;
+  }
+
+  updateCountdown();
+  const interval = setInterval(updateCountdown, 1000);
+}
+
+startCountdown();
+
+        
