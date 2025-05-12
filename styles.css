@@ -1,71 +1,96 @@
-.calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: #f9f6f1;
+  margin: 0;
+  padding: 0;
 }
-.calendar-icon {
-    width: 200px;
-    height: 200px;
-    background-color: gray;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.3s, background-color 0.3s;
-}
-.calendar-icon:hover {
-    transform: scale(1.1);
-    background-color: #e6e4e4;
-}
-.calendar-icon svg {
-    width: 60%;
-    height: 60%;
-    fill: gold;
-    transition: fill 0.3s;
-}
-.calendar-icon:hover svg {
-    fill: rgb(240, 110, 110);
-}
-.number {
-    font-size: 64px;
-    color: white;
-    font-family: Consolas, monospace;
-}
+
+/* Countdown Timer */
 .countdown-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    background: linear-gradient(135deg, #f6d365, #fda085);
-    padding: 20px 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    max-width: 600px;
-    margin: 20px auto;
-    flex-wrap: wrap;
-  }
-  
-  .time-box {
-    background: white;
-    padding: 15px 20px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    min-width: 80px;
-  }
-  
-  .number {
-    display: block;
-    font-size: 2.5rem;
-    color: #d62828; /* Deep red */
-    font-weight: bold;
-  }
-  
-  .label {
-    font-size: 0.9rem;
-    color: #333;
-    margin-top: 5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background: linear-gradient(135deg, #a4161a, #3a5a40);
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  max-width: 600px;
+  margin: 20px auto;
+  flex-wrap: wrap;
+}
+
+.time-box {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  min-width: 80px;
+}
+
+.time-box .number {
+  display: block;
+  font-size: 2.5rem;
+  color: #a4161a; /* Christmas red */
+  font-weight: bold;
+}
+
+.time-box .label {
+  font-size: 0.9rem;
+  color: #3a5a40; /* Pine green */
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.calendar-icon {
+  width: 160px;
+  height: 160px;
+  background: linear-gradient(135deg, #3a5a40, #588157);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.calendar-icon:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #588157, #3a5a40);
+}
+
+.calendar-icon svg {
+  width: 60%;
+  height: 60%;
+  fill: #f9bc60; /* Soft gold */
+  transition: fill 0.3s;
+}
+
+.calendar-icon:hover svg {
+  fill: #e63946; /* Red highlight on hover */
+}
+
+.calendar-icon .number {
+  font-size: 3rem;
+  color: white;
+  font-weight: bold;
+}
+
+/* Optional: Make numbers in grid match festive font */
+.calendar-icon .number {
+  font-family: 'Quicksand', sans-serif;
+}
