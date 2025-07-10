@@ -6,6 +6,7 @@ A fun and festive web application that lets users count down the days to Christm
 
 - **Inspiring Quote Surprises** 
 - **Interactive Interface** — Clickable icons
+- Icons are made using SVGs.
 
 ## 🛠️ Tech Stack
 
@@ -20,9 +21,15 @@ A fun and festive web application that lets users count down the days to Christm
 2. Each tile contains an icon that the user can click.
 
 3. When the icon is clicked, a quote is revealed inside the tile.
+   
+4. On top of page , no of days left for Christmas is displayed.
  
 
 ## Screenshots
 ![My Frontend](image.png)
 
 ![quotes](image-1.png)
+
+## LiveLink
+
+https://drishti-cs1251.github.io/Christmas-calendar/
